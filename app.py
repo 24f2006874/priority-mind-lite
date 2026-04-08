@@ -273,10 +273,18 @@ def run_demo(task: str, use_llm: bool) -> str:
             efficiency_val = float(step_info['partial_signals']['efficiency'].split('/')[0])
             strategy_val = float(step_info['partial_signals']['strategy'].split('/')[0])
             
+            def get_color(val):
+                if val >= 0.8:
+                    return "#28a745"  # green
+                elif val >= 0.6:
+                    return "#ffc107"  # yellow
+                else:
+                    return "#dc3545"  # red
+            
             output.append("<div class='signals'>")
-            output.append(f"<div class='signal'><span>❤️ Empathy:</span> <div class='progress-bar'><div class='progress-fill' style='width: {empathy_val*100}%'></div></div> <span class='signal-value'>{step_info['partial_signals']['empathy']}</span></div>")
-            output.append(f"<div class='signal'><span>⚡ Efficiency:</span> <div class='progress-bar'><div class='progress-fill' style='width: {efficiency_val*100}%'></div></div> <span class='signal-value'>{step_info['partial_signals']['efficiency']}</span></div>")
-            output.append(f"<div class='signal'><span>🎯 Strategy:</span> <div class='progress-bar'><div class='progress-fill' style='width: {strategy_val*100}%'></div></div> <span class='signal-value'>{step_info['partial_signals']['strategy']}</span></div>")
+            output.append(f"<div class='signal'><span>❤️ Empathy:</span> <div class='progress-bar'><div class='progress-fill' style='width: {empathy_val*100}%; background-color: {get_color(empathy_val)}'></div></div> <span class='signal-value'>{step_info['partial_signals']['empathy']}</span></div>")
+            output.append(f"<div class='signal'><span>⚡ Efficiency:</span> <div class='progress-bar'><div class='progress-fill' style='width: {efficiency_val*100}%; background-color: {get_color(efficiency_val)}'></div></div> <span class='signal-value'>{step_info['partial_signals']['efficiency']}</span></div>")
+            output.append(f"<div class='signal'><span>🎯 Strategy:</span> <div class='progress-bar'><div class='progress-fill' style='width: {strategy_val*100}%; background-color: {get_color(strategy_val)}'></div></div> <span class='signal-value'>{step_info['partial_signals']['strategy']}</span></div>")
             output.append("</div>")
             
             if step_info["action_error"]:
@@ -287,26 +295,38 @@ def run_demo(task: str, use_llm: bool) -> str:
 
         output.append("</div>")
 
-        # Summary
+        # Summary with score chart
         scores = [float(s['reward']['score']) for s in steps]
         avg_score = sum(scores) / len(scores) if scores else 0
+        
+        # Simple bar chart for scores
+        chart_html = "<div class='score-chart'>"
+        for i, score in enumerate(scores, 1):
+            color = get_color(score)
+            chart_html += f"<div class='chart-bar' style='height: {score*100}px; background-color: {color}' title='Step {i}: {score:.2f}'></div>"
+        chart_html += "</div>"
+        
         output.append("<div class='summary'>")
         output.append("---")
         output.append(f"<h3>📊 Summary</h3>")
         output.append(f"<p><strong>Average Score:</strong> <span class='avg-score'>{avg_score:.2f}</span></p>")
         output.append(f"<p><strong>Total Steps:</strong> {len(steps)}</p>")
+        output.append("<h4>Score Progression</h4>")
+        output.append(chart_html)
         output.append("</div>")
 
         # Add CSS
         css = """
         <style>
         .alert { padding: 10px; margin: 10px 0; border-radius: 5px; }
-        .alert-warning { background-color: #fff3cd; border: 1px solid #ffeaa7; color: #856404; }
-        .alert-info { background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
-        .step-card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin: 10px 0; background-color: #f9f9f9; }
-        .badge { display: inline-block; padding: 2px 6px; font-size: 0.8em; border-radius: 3px; background-color: #6c757d; color: white; }
-        .badge-secondary { background-color: #6c757d; }
-        .score { font-size: 1.2em; font-weight: bold; color: #28a745; }
+        .alert-warning { background-coltransition: width 0.3s; }
+        .signal-value { width: 60px; text-align: right; }
+        .error { color: #dc3545; }
+        .success { color: #28a745; font-weight: bold; }
+        .summary { margin-top: 20px; padding: 15px; background-color: #e9ecef; border-radius: 8px; }
+        .avg-score { font-size: 1.5em; font-weight: bold; color: #007bff; }
+        .score-chart { display: flex; align-items: end; justify-content: space-around; height: 120px; margin: 10px 0; padding: 10px; background-color: #f8f9fa; border-radius: 5px; }
+        .chart-bar { width: 20px; min-height: 10px; border-radius: 3px 3px 0 0; margin: 0 2px
         .signals { margin-top: 10px; }
         .signal { display: flex; align-items: center; margin: 5px 0; }
         .signal span:first-child { width: 100px; }
