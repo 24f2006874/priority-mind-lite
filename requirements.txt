@@ -1,4 +1,4 @@
-openenv-core==0.2.3
+git+https://github.com/meta-pytorch/OpenEnv.git
 openai==2.7.2
 pydantic==2.6.1
 requests==2.31.0
