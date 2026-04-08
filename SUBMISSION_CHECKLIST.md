@@ -89,7 +89,7 @@
    - [x] Verify Space builds and runs successfully
 
 4. **GitHub Repository**
-   - [x] Push all files to https://github.com/TeamAxiom/priority-mind-lite
+   - [x] Push all files to https://github.com/24f2006874/priority-mind-lite
    - [x] Ensure README.md renders correctly
    - [x] Add hackathon topic: `meta-pytorch-hackathon`
 
@@ -137,7 +137,7 @@ python demo.py --task hard --live
 
 ## 🔗 Submission Links
 
-- **GitHub**: https://github.com/TeamAxiom/priority-mind-lite
+- **GitHub**: https://github.com/24f2006874/priority-mind-lite
 - **HF Spaces**: https://huggingface.co/spaces/TeamAxiom/priority-mind-lite
 - **Hackathon Portal**: https://www.scaler.com/school-of-technology/meta-pytorch-hackathon
 - **Team**: Team Axiom (Rauank Ratan, Akash Deep, Sangam Jha | IIT Madras)

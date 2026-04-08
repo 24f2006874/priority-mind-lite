@@ -311,7 +311,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## 🔗 Links
 
-- [GitHub Repository](https://github.com/TeamAxiom/priority-mind-lite)
+- [GitHub Repository](https://github.com/24f2006874/priority-mind-lite)
 - [HF Spaces Demo](https://huggingface.co/spaces/TeamAxiom/priority-mind-lite)
 - [OpenEnv Documentation](https://github.com/meta-pytorch/OpenEnv)
 - [Hackathon Portal](https://www.scaler.com/school-of-technology/meta-pytorch-hackathon)

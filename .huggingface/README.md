@@ -46,7 +46,7 @@ Instead of defining "good customer service" mathematically (+10 for resolution, 
 
 ## Links
 
-- [GitHub Repository](https://github.com/TeamAxiom/priority-mind-lite)
+- [GitHub Repository](https://github.com/24f2006874/priority-mind-lite)
 - [Hackathon Submission](https://www.scaler.com/school-of-technology/meta-pytorch-hackathon)
 
 ---
