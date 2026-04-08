@@ -22,10 +22,6 @@ ENV API_BASE_URL=https://router.huggingface.co/v1
 ENV MODEL_NAME=meta-llama/Llama-3.1-8B-Instruct:novita
 ENV PORT=7860
 
-# Health check to validate environment is working
-HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD python -c "from environment import PriorityMindEnv; env = PriorityMindEnv('easy'); env.reset(); print(env.state())" || exit 1
-
 # Expose port for Gradio
 EXPOSE 7860
 
