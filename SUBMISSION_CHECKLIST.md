@@ -33,7 +33,7 @@
 - [x] **openenv.yaml validation**: Run `openenv validate . --verbose`
 - [x] **Docker build**: `docker build -t priority-mind-lite .`
 - [x] **Docker run**: `docker run --rm priority-mind-lite`
-- [x] **HF Spaces deployment**: Pushed to https://huggingface.co/spaces/TeamAxiom/priority-mind-lite
+- [x] **HF Spaces deployment**: Pushed to https://huggingface.co/spaces/raunakratan/priority-mind-lite
 
 ## 📋 Submission Requirements (Per Hackathon Guidelines)
 
@@ -82,7 +82,7 @@
    - [x] Run `openenv validate . --verbose`
 
 3. **HF Spaces Deployment**
-   - [x] Create Space: https://huggingface.co/spaces/TeamAxiom/priority-mind-lite
+   - [x] Create Space: https://huggingface.co/spaces/raunakratan/priority-mind-lite
    - [x] Set SDK: Gradio
    - [x] Set Python version: 3.10
    - [x] Add HF_TOKEN as Space secret
@@ -138,7 +138,7 @@ python demo.py --task hard --live
 ## 🔗 Submission Links
 
 - **GitHub**: https://github.com/24f2006874/priority-mind-lite
-- **HF Spaces**: https://huggingface.co/spaces/TeamAxiom/priority-mind-lite
+- **HF Spaces**: https://huggingface.co/spaces/raunakratan/priority-mind-lite
 - **Hackathon Portal**: https://www.scaler.com/school-of-technology/meta-pytorch-hackathon
 - **Team**: Team Axiom (Rauank Ratan, Akash Deep, Sangam Jha | IIT Madras)
 

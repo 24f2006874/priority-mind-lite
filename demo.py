@@ -313,7 +313,7 @@ def main() -> None:
     print()
     print("Built on OpenEnv. Judged by Llama.")
     print("GitHub: https://github.com/24f2006874/priority-mind-lite")
-    print("HF Space: https://huggingface.co/spaces/TeamAxiom/priority-mind-lite")
+    print("HF Space: https://huggingface.co/spaces/raunakratan/priority-mind-lite")
     print()
 
 

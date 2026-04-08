@@ -4,7 +4,7 @@ PriorityMind-Lite: Gradio Web Interface for Hugging Face Spaces
 This provides an interactive demo of the PriorityMind-Lite environment
 where users can interact with the AI customer support triage agent.
 
-Deployed at: https://huggingface.co/spaces/TeamAxiom/priority-mind-lite
+Deployed at: https://huggingface.co/spaces/raunakratan/priority-mind-lite
 """
 
 from __future__ import annotations
