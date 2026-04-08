@@ -9,7 +9,7 @@ COPY requirements.txt pyproject.toml README.md ./
 RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt openenv-core openai pydantic python-dotenv gradio
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy all application files
 COPY . .
@@ -26,6 +26,7 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
 
 # Expose port for Gradio
 EXPOSE 7860
+
 
 # Default command runs the Gradio web interface
 CMD ["python", "app.py"]
