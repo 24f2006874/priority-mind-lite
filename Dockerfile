@@ -27,5 +27,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
 # Expose port for Gradio + OpenEnv endpoints
 EXPOSE 7860
 
-# Default command runs the combined Gradio + OpenEnv app
-CMD ["python", "app.py"]
+# Default command runs the standalone OpenEnv server for hackathon validation
+CMD ["python", "-m", "server.app", "--port", "7860"]

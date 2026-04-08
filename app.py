@@ -496,8 +496,8 @@ try:
         max_concurrent_envs=1,
     )
 
-    # Mount OpenEnv endpoints under /env/ path
-    demo.app.mount("/env", openenv_app)
+    # Mount OpenEnv endpoints at root level for hackathon validation
+    demo.app.mount("/", openenv_app)
 
 except Exception as e:
     print(f"Warning: Could not mount OpenEnv server endpoints: {e}")
