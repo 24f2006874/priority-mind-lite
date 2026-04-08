@@ -3,9 +3,8 @@ title: PriorityMind-Lite
 emoji: 🧠
 colorFrom: blue
 colorTo: purple
-sdk: gradio
-sdk_version: 4.19.2
-python_version: 3.10
+sdk: docker
+app_file: app.py
 license: mit
 tags:
   - openenv
