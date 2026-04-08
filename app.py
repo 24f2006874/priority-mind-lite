@@ -352,7 +352,7 @@ def run_demo(task: str, use_llm: bool) -> str:
 def compare_modes() -> str:
     """Run comparison between LLM-rewarded and heuristic modes."""
     output = []
-        output.append("<h2>Mode Comparison</h2>")
+    output.append("<h2>Mode Comparison</h2>")
 
     for task in ["easy", "medium", "hard"]:
         output.append(f"<h3>Task: {task.upper()}</h3>")
