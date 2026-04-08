@@ -334,17 +334,17 @@ def run_demo(task: str, use_llm: bool) -> str:
         .score { font-size: 1.2em; font-weight: bold; color: #0056b3; }
         .signals { margin-top: 15px; }
         .signal { display: flex; align-items: center; margin: 10px 0; }
-        .signal .icon { width: 100px; font-weight: bold; font-size: 0.9em; color: #333; }
+        .signal .icon { width: 100px; font-weight: bold; font-size: 0.9em; color: #000; }
         .progress-bar { flex: 1; height: 15px; background-color: #e9ecef; border-radius: 5px; margin: 0 10px; overflow: hidden; border: 1px solid #ccc; }
         .progress-fill { height: 100%; transition: width 0.3s; }
         .signal-value { width: 80px; text-align: right; font-weight: bold; color: #000; }
-        .error { color: #dc3545; font-weight: bold; }
-        .success { color: #28a745; font-weight: bold; }
+        .error { color: #000; font-weight: bold; }
+        .success { color: #000; font-weight: bold; }
         .summary { margin-top: 30px; padding: 25px; background-color: #fff; border: 3px solid #007bff; border-radius: 8px; }
         .summary h3 { color: #000; margin: 0 0 15px 0; font-size: 1.5em; }
         .summary h4 { color: #000; margin: 15px 0 10px 0; }
         .summary p { color: #000; font-size: 1.1em; margin: 10px 0; font-weight: 500; }
-        .avg-score { font-size: 1.3em; font-weight: bold; color: #0056b3; }
+        .avg-score { font-size: 1.3em; font-weight: bold; color: #000; }
         .score-chart { display: flex; align-items: end; justify-content: space-around; height: 150px; margin: 15px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px; border: 2px solid #ddd; }
         .chart-bar { width: 25px; min-height: 10px; border-radius: 3px 3px 0 0; margin: 0 3px; }
         .steps-container { margin: 20px 0; }
@@ -399,8 +399,8 @@ def compare_modes() -> str:
     css = """
     <style>
     .mode-section { border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin: 10px 0; background-color: #f9f9f9; }
-    .score { font-size: 1.2em; font-weight: bold; color: #28a745; }
-    .error { color: #dc3545; }
+    .score { font-size: 1.2em; font-weight: bold; color: #000; }
+    .error { color: #000; }
     </style>
     """
 
