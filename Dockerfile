@@ -8,13 +8,8 @@ COPY requirements.txt pyproject.toml README.md ./
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application files
-COPY environment.py grader.py inference.py models.py demo.py app.py utils.py ./
-COPY openenv.yaml .env.example ./
-COPY scripts ./scripts
-COPY tests ./tests
-COPY server ./server
-COPY .huggingface ./.huggingface
+# Copy all application files
+COPY . .
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
