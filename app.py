@@ -247,16 +247,16 @@ def run_demo(task: str, use_llm: bool) -> str:
         output.append(f"<p><strong>Reward Grading:</strong> {_reward_mode_label(summary['reward_mode'])}</p>")
         
         if use_llm and not summary["client_available"]:
-            output.append("<div class='alert alert-warning'>⚠️ Note: HF_TOKEN or OpenAI client unavailable, using heuristic actions and programmatic grading only.</div>")
+            output.append("<div class='alert alert-warning'>[!] Note: HF_TOKEN or OpenAI client unavailable, using heuristic actions and programmatic grading only.</div>")
         elif summary["action_mode"] == "mixed":
-            output.append(f"<div class='alert alert-info'>ℹ️ Action generation used LLM in {summary['llm_action_steps']}/{summary['total_steps']} steps, heuristic fallback for the rest.</div>")
+            output.append(f"<div class='alert alert-info'>[i] Action generation used LLM in {summary['llm_action_steps']}/{summary['total_steps']} steps, heuristic fallback for the rest.</div>")
         elif summary["action_mode"] == "heuristic_fallback":
-            output.append("<div class='alert alert-warning'>⚠️ Every action fell back to heuristic policy after LLM failure.</div>")
+            output.append("<div class='alert alert-warning'>[!] Every action fell back to heuristic policy after LLM failure.</div>")
 
         if summary["reward_mode"] == "hybrid_mixed":
-            output.append(f"<div class='alert alert-info'>ℹ️ Reward grading used LLM judge in {summary['reward_llm_steps']}/{summary['total_steps']} steps, programmatic fallback in the rest.</div>")
+            output.append(f"<div class='alert alert-info'>[i] Reward grading used LLM judge in {summary['reward_llm_steps']}/{summary['total_steps']} steps, programmatic fallback in the rest.</div>")
         elif summary["reward_mode"] == "programmatic_fallback":
-            output.append("<div class='alert alert-warning'>⚠️ Reward grading attempted live evaluation, but every step fell back to programmatic grader.</div>")
+            output.append("<div class='alert alert-warning'>[!] Reward grading attempted live evaluation, but every step fell back to programmatic grader.</div>")
 
         output.append("<div class='steps-container'>")
 
@@ -282,15 +282,15 @@ def run_demo(task: str, use_llm: bool) -> str:
                     return "#dc3545"  # red
             
             output.append("<div class='signals'>")
-            output.append(f"<div class='signal'><span>❤️ Empathy:</span> <div class='progress-bar'><div class='progress-fill' style='width: {empathy_val*100}%; background-color: {get_color(empathy_val)}'></div></div> <span class='signal-value'>{step_info['partial_signals']['empathy']}</span></div>")
-            output.append(f"<div class='signal'><span>⚡ Efficiency:</span> <div class='progress-bar'><div class='progress-fill' style='width: {efficiency_val*100}%; background-color: {get_color(efficiency_val)}'></div></div> <span class='signal-value'>{step_info['partial_signals']['efficiency']}</span></div>")
-            output.append(f"<div class='signal'><span>🎯 Strategy:</span> <div class='progress-bar'><div class='progress-fill' style='width: {strategy_val*100}%; background-color: {get_color(strategy_val)}'></div></div> <span class='signal-value'>{step_info['partial_signals']['strategy']}</span></div>")
+            output.append(f"<div class='signal'><span class='icon'>EMPATHY</span> <div class='progress-bar'><div class='progress-fill' style='width: {empathy_val*100}%; background-color: {get_color(empathy_val)}'></div></div> <span class='signal-value'>{step_info['partial_signals']['empathy']}</span></div>")
+            output.append(f"<div class='signal'><span class='icon'>EFFICIENCY</span> <div class='progress-bar'><div class='progress-fill' style='width: {efficiency_val*100}%; background-color: {get_color(efficiency_val)}'></div></div> <span class='signal-value'>{step_info['partial_signals']['efficiency']}</span></div>")
+            output.append(f"<div class='signal'><span class='icon'>STRATEGY</span> <div class='progress-bar'><div class='progress-fill' style='width: {strategy_val*100}%; background-color: {get_color(strategy_val)}'></div></div> <span class='signal-value'>{step_info['partial_signals']['strategy']}</span></div>")
             output.append("</div>")
             
             if step_info["action_error"]:
-                output.append(f"<p class='error'>❌ Action Error: {step_info['action_error']}</p>")
+                output.append(f"<p class='error'>[ERROR] Action Error: {step_info['action_error']}</p>")
             if step_info['done']:
-                output.append("<p class='success'>✅ Episode Complete</p>")
+                output.append("<p class='success'>[OK] Episode Complete</p>")
             output.append("</div>")
 
         output.append("</div>")
@@ -321,25 +321,33 @@ def run_demo(task: str, use_llm: bool) -> str:
         # Add CSS
         css = """
         <style>
-        .alert { padding: 10px; margin: 10px 0; border-radius: 5px; }
-        .alert-warning { background-coltransition: width 0.3s; }
-        .signal-value { width: 60px; text-align: right; }
-        .error { color: #dc3545; }
+        body { color: #000; }
+        .alert { padding: 12px 15px; margin: 10px 0; border-radius: 5px; font-weight: 500; }
+        .alert-warning { background-color: #fff3cd; border: 2px solid #ffc107; color: #000; }
+        .alert-info { background-color: #d1ecf1; border: 2px solid #17a2b8; color: #000; }
+        .alert-danger { background-color: #f8d7da; border: 2px solid #dc3545; color: #000; }
+        .step-card { border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 15px 0; background-color: #fff; }
+        .step-card h3 { color: #000; margin: 0 0 10px 0; }
+        .step-card p { color: #000; margin: 8px 0; }
+        .badge { display: inline-block; padding: 4px 8px; font-size: 0.85em; border-radius: 3px; background-color: #6c757d; color: white; }
+        .badge-secondary { background-color: #6c757d; }
+        .score { font-size: 1.2em; font-weight: bold; color: #0056b3; }
+        .signals { margin-top: 15px; }
+        .signal { display: flex; align-items: center; margin: 10px 0; }
+        .signal .icon { width: 100px; font-weight: bold; font-size: 0.9em; color: #333; }
+        .progress-bar { flex: 1; height: 15px; background-color: #e9ecef; border-radius: 5px; margin: 0 10px; overflow: hidden; border: 1px solid #ccc; }
+        .progress-fill { height: 100%; transition: width 0.3s; }
+        .signal-value { width: 80px; text-align: right; font-weight: bold; color: #000; }
+        .error { color: #dc3545; font-weight: bold; }
         .success { color: #28a745; font-weight: bold; }
-        .summary { margin-top: 20px; padding: 15px; background-color: #e9ecef; border-radius: 8px; }
-        .avg-score { font-size: 1.5em; font-weight: bold; color: #007bff; }
-        .score-chart { display: flex; align-items: end; justify-content: space-around; height: 120px; margin: 10px 0; padding: 10px; background-color: #f8f9fa; border-radius: 5px; }
-        .chart-bar { width: 20px; min-height: 10px; border-radius: 3px 3px 0 0; margin: 0 2px
-        .signals { margin-top: 10px; }
-        .signal { display: flex; align-items: center; margin: 5px 0; }
-        .signal span:first-child { width: 100px; }
-        .progress-bar { flex: 1; height: 10px; background-color: #e9ecef; border-radius: 5px; margin: 0 10px; overflow: hidden; }
-        .progress-fill { height: 100%; background-color: #28a745; transition: width 0.3s; }
-        .signal-value { width: 60px; text-align: right; }
-        .error { color: #dc3545; }
-        .success { color: #28a745; font-weight: bold; }
-        .summary { margin-top: 20px; padding: 15px; background-color: #e9ecef; border-radius: 8px; }
-        .avg-score { font-size: 1.5em; font-weight: bold; color: #007bff; }
+        .summary { margin-top: 30px; padding: 25px; background-color: #fff; border: 3px solid #007bff; border-radius: 8px; }
+        .summary h3 { color: #000; margin: 0 0 15px 0; font-size: 1.5em; }
+        .summary h4 { color: #000; margin: 15px 0 10px 0; }
+        .summary p { color: #000; font-size: 1.1em; margin: 10px 0; font-weight: 500; }
+        .avg-score { font-size: 1.3em; font-weight: bold; color: #0056b3; }
+        .score-chart { display: flex; align-items: end; justify-content: space-around; height: 150px; margin: 15px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px; border: 2px solid #ddd; }
+        .chart-bar { width: 25px; min-height: 10px; border-radius: 3px 3px 0 0; margin: 0 3px; }
+        .steps-container { margin: 20px 0; }
         </style>
         """
 
