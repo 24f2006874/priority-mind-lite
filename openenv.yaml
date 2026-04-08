@@ -1,0 +1,34 @@
+name: priority-mind-lite
+version: 1.0.0
+description: LLM-rewarded customer support ticket triage environment
+author: Team Axiom
+license: MIT
+python_version: "3.10"
+environment_class: environment.PriorityMindEnv
+tags:
+  - openenv
+  - customer-support
+  - llm-reward
+  - text-based
+observation_space:
+  type: dict
+  properties:
+    ticket_text: { type: string }
+    sentiment: { type: number, min: -1.0, max: 1.0 }
+    category: { type: ["string", "null"], enum: [billing, technical, general, complaint, null] }
+    priority: { type: ["string", "null"], enum: [low, medium, high, urgent, null] }
+    attempts: { type: integer, min: 0 }
+    resolved: { type: boolean }
+action_space:
+  type: dict
+  properties:
+    action_type: { type: string, enum: [categorize, prioritize, respond, escalate, resolve] }
+    content: { type: string }
+    priority: { type: string, enum: [low, medium, high, urgent] }
+tasks:
+  - name: easy
+    description: Deterministic billing ticket focused on correct triage and sensible priority.
+  - name: medium
+    description: Frustrated technical issue requiring urgency and empathetic response.
+  - name: hard
+    description: Multi-issue complaint that rewards empathy, escalation, and careful resolution.

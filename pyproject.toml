@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "priority-mind-lite"
+version = "1.0.0"
+description = "LLM-rewarded customer support ticket triage environment for OpenEnv"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Team Axiom" }
+]
+dependencies = [
+  "openenv-core>=0.2.0",
+  "openai==2.7.2",
+  "pydantic==2.6.1",
+  "python-dotenv==1.0.0",
+  "gradio>=4.0.0",
+]
+
+[project.scripts]
+server = "server.app:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -p no:cacheprovider"
