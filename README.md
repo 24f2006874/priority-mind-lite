@@ -1,3 +1,20 @@
+---
+title: PriorityMind-Lite
+emoji: 🧠
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_file: app.py
+pinned: false
+license: mit
+tags:
+  - openenv
+  - customer-support
+  - llm-reward
+  - reinforcement-learning
+  - meta-pytorch-hackathon
+---
+
 # 🧠 PriorityMind-Lite
 
 **LLM-Rewarded Customer Support Ticket Triage Environment**
