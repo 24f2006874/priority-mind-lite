@@ -6,4 +6,3 @@ huggingface_hub==0.20.3
 python-dotenv==1.0.0
 PyYAML==6.0.2
 pytest==8.2.2
-gradio==4.19.2
