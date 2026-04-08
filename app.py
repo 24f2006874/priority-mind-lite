@@ -241,7 +241,7 @@ def run_demo(task: str, use_llm: bool) -> str:
         steps, summary = run_episode(task, use_llm)
 
         output = []
-        output.append(f"<h1>🎯 PriorityMind-Lite Demo</h1>")
+        output.append(f"<h1>PriorityMind-Lite Demo</h1>")
         output.append(f"<h2>Task: {task.upper()}</h2>")
         output.append(f"<p><strong>Action Policy:</strong> {_action_mode_label(summary['action_mode'])}</p>")
         output.append(f"<p><strong>Reward Grading:</strong> {_reward_mode_label(summary['reward_mode'])}</p>")
@@ -298,6 +298,8 @@ def run_demo(task: str, use_llm: bool) -> str:
         # Summary with score chart
         scores = [float(s['reward']['score']) for s in steps]
         avg_score = sum(scores) / len(scores) if scores else 0
+        min_score = min(scores) if scores else 0
+        max_score = max(scores) if scores else 0
         
         # Simple bar chart for scores
         chart_html = "<div class='score-chart'>"
@@ -308,8 +310,9 @@ def run_demo(task: str, use_llm: bool) -> str:
         
         output.append("<div class='summary'>")
         output.append("---")
-        output.append(f"<h3>📊 Summary</h3>")
+        output.append("<h3>Summary</h3>")
         output.append(f"<p><strong>Average Score:</strong> <span class='avg-score'>{avg_score:.2f}</span></p>")
+        output.append(f"<p><strong>Min Score:</strong> {min_score:.2f} | <strong>Max Score:</strong> {max_score:.2f}</p>")
         output.append(f"<p><strong>Total Steps:</strong> {len(steps)}</p>")
         output.append("<h4>Score Progression</h4>")
         output.append(chart_html)
@@ -349,13 +352,13 @@ def run_demo(task: str, use_llm: bool) -> str:
 def compare_modes() -> str:
     """Run comparison between LLM-rewarded and heuristic modes."""
     output = []
-    output.append("<h2>🔄 Mode Comparison</h2>")
+        output.append("<h2>Mode Comparison</h2>")
 
     for task in ["easy", "medium", "hard"]:
         output.append(f"<h3>Task: {task.upper()}</h3>")
 
         output.append("<div class='mode-section'>")
-        output.append("<h4>🤖 LLM-Enabled Mode</h4>")
+        output.append("<h4>LLM-Enabled Mode</h4>")
         try:
             steps_llm, summary_llm = run_episode(task, use_llm=True)
             scores_llm = [float(s['reward']['score']) for s in steps_llm]
@@ -369,7 +372,7 @@ def compare_modes() -> str:
         output.append("</div>")
 
         output.append("<div class='mode-section'>")
-        output.append("<h4>🧠 Heuristic Mode</h4>")
+        output.append("<h4>Heuristic Mode</h4>")
         try:
             steps_heur, summary_heur = run_episode(task, use_llm=False)
             scores_heur = [float(s['reward']['score']) for s in steps_heur]
