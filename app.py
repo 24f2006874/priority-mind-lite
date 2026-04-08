@@ -446,11 +446,38 @@ with gr.Blocks(title="PriorityMind-Lite") as demo:
         compare_button = gr.Button("Compare enabled vs heuristic", variant="secondary")
         comparison_output = gr.HTML()
 
+    with gr.Tab("Mode Comparison"):
+        compare_button = gr.Button("Compare enabled vs heuristic", variant="secondary")
+        comparison_output = gr.HTML()
+
         compare_button.click(
             fn=compare_modes,
             inputs=[],
             outputs=comparison_output
         )
+
+    with gr.Tab("About"):
+        gr.Markdown("""
+        ### How It Works
+
+        1. **Environment Reset**: Generate a customer support ticket with sentiment and true category
+        2. **Agent Takes Action**: Choose from categorize, prioritize, respond, escalate, or resolve
+        3. **Hybrid Grader Evaluates**:
+           - LLM Evaluation (60%): Llama judges on empathy, efficiency, strategy
+           - Fallback (40%): Deterministic rules ensure reliability
+        4. **Reward Signal**: Normalized score [0.0, 1.0] with partial signals
+
+        ### Key Innovation
+
+        Instead of defining "good customer service" mathematically, we let a language model
+        (Llama) judge each agent action on dimensions like empathy, efficiency, and strategy.
+
+        ### Technology Stack
+
+        - **Framework**: OpenEnv (Meta)
+        - **Model**: Llama 3.1 8B Instruct (via HF Router)
+        - **Language**: Python 3.10
+        """)
 
 # Mount OpenEnv server endpoints for hackathon validation
 try:
@@ -473,44 +500,6 @@ try:
 except Exception as e:
     print(f"Warning: Could not mount OpenEnv server endpoints: {e}")
     print("This is expected if openenv-core is not installed or if running locally.")
-            inputs=[],
-            outputs=comparison_output
-        )
-
-    with gr.Tab("About"):
-        gr.Markdown("""
-        ### How It Works
-        
-        1. **Environment Reset**: Generate a customer support ticket with sentiment and true category
-        2. **Agent Takes Action**: Choose from categorize, prioritize, respond, escalate, or resolve
-        3. **Hybrid Grader Evaluates**:
-           - LLM Evaluation (60%): Llama judges on empathy, efficiency, strategy
-           - Fallback (40%): Deterministic rules ensure reliability
-        4. **Reward Signal**: Normalized score [0.0, 1.0] with partial signals
-        
-        ### Key Innovation
-        
-        Instead of defining "good customer service" mathematically, we let a language model
-        (Llama) judge each agent action on dimensions like empathy, efficiency, and strategy.
-        
-        ### Technology Stack
-        
-        - **Framework**: OpenEnv (Meta)
-        - **Model**: Llama 3.1 8B Instruct (via HF Router)
-        - **Language**: Python 3.10
-        - **Validation**: Pydantic typed models
-        
-        ### Links
-        
-        - [GitHub Repository](https://github.com/24f2006874/priority-mind-lite)
-        - [OpenEnv Documentation](https://github.com/meta-pytorch/OpenEnv)
-        """)
-
-    gr.Markdown("""
-    ---
-    *Built on OpenEnv. Judged by Llama.*
-    """)
-
 
 if __name__ == "__main__":
     configure_runtime()
