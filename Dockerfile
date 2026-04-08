@@ -5,6 +5,9 @@ WORKDIR /app
 # Copy dependency files first for better caching
 COPY requirements.txt pyproject.toml README.md ./
 
+# Install git (needed for git+https:// dependencies in requirements.txt)
+RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
+
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
