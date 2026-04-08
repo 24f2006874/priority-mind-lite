@@ -240,7 +240,7 @@ python app.py
 |----------|-------------|---------|
 | `HF_TOKEN` | Hugging Face API key | (required for live mode) |
 | `API_BASE_URL` | LLM API endpoint | `https://router.huggingface.co/v1` |
-| `MODEL_NAME` | Model identifier | `meta-llama/Llama-3.1-8B-Instruct:novita` |
+| `MODEL_NAME` | Model identifier | `meta-llama/Llama-3.1-8B-Instruct` |
 | `HF_TIMEOUT_SECONDS` | API timeout | `12` |
 
 ### .env File
@@ -251,7 +251,7 @@ HF_TOKEN=hf_your_token_here
 
 # API Configuration - Use HF Router for Inference
 API_BASE_URL=https://router.huggingface.co/v1
-MODEL_NAME=meta-llama/Llama-3.1-8B-Instruct:novita
+MODEL_NAME=meta-llama/Llama-3.1-8B-Instruct
 HF_TIMEOUT_SECONDS=12
 ```
 
