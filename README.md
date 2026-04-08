@@ -170,6 +170,51 @@ Try the interactive demo on Hugging Face Spaces:
 
 👉 **[https://huggingface.co/spaces/TeamAxiom/priority-mind-lite](https://huggingface.co/spaces/TeamAxiom/priority-mind-lite)**
 
+## 🎨 Gradio Web Interface
+
+A user-friendly web interface for interacting with the PriorityMind environment and testing ticket triage workflows.
+
+### Features
+
+- **Interactive Ticket Input**: Input customer support tickets and get immediate triage suggestions
+- **Environment Simulation**: Select difficulty levels (easy, medium, hard) and run full episode simulations
+- **Real-time Feedback**: View LLM evaluations, reward breakdowns, and reasoning
+- **Episode History**: Track and review past triage decisions with metrics
+- **Configuration UI**: Adjust model parameters, timeouts, and evaluation settings without code changes
+
+### Quick Start
+
+```bash
+# Launch Gradio interface (default: http://localhost:7860)
+python app.py
+
+# Run on specific port
+python app.py --port 8000
+
+# Enable live LLM evaluation (requires HF_TOKEN)
+export HF_TOKEN=hf_your_token_here
+python app.py
+```
+
+### Usage
+
+1. **Select Task Difficulty**: Choose from easy (billing), medium (technical), or hard (complaints)
+2. **Input Ticket**: Enter a customer support ticket or use a sample
+3. **Run Triage**: Click "Triage Ticket" to send to environment
+4. **View Results**: See category prediction, priority level, and LLM reasoning
+5. **Review Metrics**: Check empathy, efficiency, and strategy scores
+
+### Interface Components
+
+| Component | Purpose |
+|-----------|---------|
+| Task Selector | Choose difficulty level with predefined variations |
+| Ticket Input | Text area for custom or sample tickets |
+| Action Panel | Select triage action (categorize, prioritize, respond, escalate, resolve) |
+| Response Display | Shows environment feedback and next state |
+| Metrics Panel | Displays reward breakdown with reasoning |
+| History Log | View all actions in current episode |
+
 ## ⚙️ Configuration
 
 ### Environment Variables
