@@ -322,6 +322,7 @@ def run_demo(task: str, use_llm: bool) -> str:
         css = """
         <style>
         body { color: #000; }
+        h1, h2, h3, h4, h5, h6 { color: #000 !important; }
         .alert { padding: 12px 15px; margin: 10px 0; border-radius: 5px; font-weight: 500; }
         .alert-warning { background-color: #fff3cd; border: 2px solid #ffc107; color: #000; }
         .alert-info { background-color: #d1ecf1; border: 2px solid #17a2b8; color: #000; }
@@ -398,6 +399,7 @@ def compare_modes() -> str:
 
     css = """
     <style>
+    h1, h2, h3, h4, h5, h6 { color: #000 !important; }
     .mode-section { border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin: 10px 0; background-color: #f9f9f9; }
     .score { font-size: 1.2em; font-weight: bold; color: #000; }
     .error { color: #000; }
