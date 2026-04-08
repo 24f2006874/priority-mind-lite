@@ -6,7 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![OpenEnv Compatible](https://img.shields.io/badge/OpenEnv-compatible-green.svg)](https://github.com/meta-openenv/openenv-core)
+[![OpenEnv Compatible](https://img.shields.io/badge/OpenEnv-compatible-green.svg)](https://github.com/meta-pytorch/OpenEnv)
 
 ---
 
@@ -313,7 +313,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 - [GitHub Repository](https://github.com/24f2006874/priority-mind-lite)
 - [HF Spaces Demo](https://huggingface.co/spaces/TeamAxiom/priority-mind-lite)
-- [OpenEnv Documentation](https://github.com/meta-openenv/openenv-core)
+- [OpenEnv Documentation](https://github.com/meta-pytorch/OpenEnv)
 - [Hackathon Portal](https://www.scaler.com/school-of-technology/meta-pytorch-hackathon)
 
 ---

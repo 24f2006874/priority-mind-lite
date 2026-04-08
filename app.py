@@ -404,7 +404,7 @@ with gr.Blocks(title="PriorityMind-Lite") as demo:
         ### Links
         
         - [GitHub Repository](https://github.com/24f2006874/priority-mind-lite)
-        - [OpenEnv Documentation](https://github.com/meta-openenv/openenv-core)
+        - [OpenEnv Documentation](https://github.com/meta-pytorch/OpenEnv)
         """)
 
     gr.Markdown("""
