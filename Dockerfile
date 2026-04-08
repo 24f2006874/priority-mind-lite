@@ -18,14 +18,14 @@ COPY . .
 ENV PYTHONUNBUFFERED=1
 ENV API_BASE_URL=https://router.huggingface.co/v1
 ENV MODEL_NAME=meta-llama/Llama-3.1-8B-Instruct
-ENV PORT=8000
+ENV PORT=7860
 
 # Health check to validate environment is working
 HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health').read()" || exit 1
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:7860/health').read()" || exit 1
 
-# Expose port for OpenEnv HTTP server (required for hackathon submission checks)
-EXPOSE 8000
+# Expose port for Gradio + OpenEnv endpoints
+EXPOSE 7860
 
-# Default command runs the OpenEnv HTTP server (required for /reset endpoint)
-CMD ["python", "-m", "server.app"]
+# Default command runs the combined Gradio + OpenEnv app
+CMD ["python", "app.py"]

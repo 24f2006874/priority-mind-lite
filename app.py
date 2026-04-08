@@ -412,9 +412,9 @@ with gr.Blocks(title="PriorityMind-Lite") as demo:
     gr.Markdown("""
     # PriorityMind-Lite
     ### LLM-Rewarded Customer Support Ticket Triage Environment
-    
+
     **Meta PyTorch OpenEnv Hackathon 2026 | Team Axiom (IIT Madras)**
-    
+
     This demo showcases an AI agent that learns to triage customer support tickets
     using rewards evaluated by Llama — not hardcoded rules.
     """)
@@ -448,6 +448,31 @@ with gr.Blocks(title="PriorityMind-Lite") as demo:
 
         compare_button.click(
             fn=compare_modes,
+            inputs=[],
+            outputs=comparison_output
+        )
+
+# Mount OpenEnv server endpoints for hackathon validation
+try:
+    from environment import PriorityMindEnv
+    from models import Action, Observation
+    from openenv.core.env_server.http_server import create_app
+
+    # Create OpenEnv HTTP server
+    openenv_app = create_app(
+        PriorityMindEnv,
+        Action,
+        Observation,
+        env_name="priority-mind-lite",
+        max_concurrent_envs=1,
+    )
+
+    # Mount OpenEnv endpoints under /env/ path
+    demo.app.mount("/env", openenv_app)
+
+except Exception as e:
+    print(f"Warning: Could not mount OpenEnv server endpoints: {e}")
+    print("This is expected if openenv-core is not installed or if running locally.")
             inputs=[],
             outputs=comparison_output
         )
