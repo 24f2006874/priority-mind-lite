@@ -1,3 +1,20 @@
+---
+title: PriorityMind-Lite
+emoji: 🧠
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_file: app.py
+pinned: false
+license: mit
+tags:
+  - openenv
+  - customer-support
+  - llm-reward
+  - reinforcement-learning
+  - meta-pytorch-hackathon
+---
+
 # 🧠 PriorityMind-Lite
 
 **LLM-Rewarded Customer Support Ticket Triage Environment**
@@ -168,7 +185,7 @@ See [RESULTS.md](RESULTS.md) for detailed benchmark methodology and the verified
 
 Try the interactive demo on Hugging Face Spaces:
 
-👉 **[https://huggingface.co/spaces/TeamAxiom/priority-mind-lite](https://huggingface.co/spaces/TeamAxiom/priority-mind-lite)**
+👉 **[https://huggingface.co/spaces/raunakratan/priority-mind-lite](https://huggingface.co/spaces/raunakratan/priority-mind-lite)**
 
 ## 🎨 Gradio Web Interface
 
@@ -312,7 +329,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 ## 🔗 Links
 
 - [GitHub Repository](https://github.com/24f2006874/priority-mind-lite)
-- [HF Spaces Demo](https://huggingface.co/spaces/TeamAxiom/priority-mind-lite)
+- [HF Spaces Demo](https://huggingface.co/spaces/raunakratan/priority-mind-lite)
 - [OpenEnv Documentation](https://github.com/meta-pytorch/OpenEnv)
 - [Hackathon Portal](https://www.scaler.com/school-of-technology/meta-pytorch-hackathon)
 
